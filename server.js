@@ -36,7 +36,7 @@ const connectDB = async () => {
     }
 };
 app.get("/",(req,res)=> {
-    res.send("Digital Diary 🤍")
+    res.send("Your thoughts, your story, securely kept 🤍")
  })
  
 
