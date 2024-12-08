@@ -6,7 +6,7 @@ import postRoutes from './routes/posts.js';
 import userRoutes from './routes/users.js';
 
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.PORT || 5007;
 
 const app = express();
 app.use(express.json());
@@ -31,7 +31,7 @@ const connectDB = async () => {
 
         console.log('MongoDB connected');
     } catch (err) {
-        console.error(err.message);
+        console.error('MongoDB connection error:', err.message);
         process.exit(1);
     }
 };
@@ -40,8 +40,11 @@ app.get("/",(req,res)=> {
  })
  
 
-connectDB().then(() => {
-    const port = 5007;
-    app.listen(port, () => console.log(`listening on port ${port}`));
-}).catch(err => console.log(err));
+ connectDB().then(() => {
+    app.listen(port, () => {
+        console.log(`Listening on port ${port}`);
+    });
+}).catch(err => {
+    console.log('Error in DB connection:', err);
+});
 
