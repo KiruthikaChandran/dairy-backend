@@ -18,7 +18,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/api/posts', postRoutes);
-app.use('/api/user', userRoutes);
+app.use('/api/users', userRoutes);
 
 const connectDB = async () => {
     try {
